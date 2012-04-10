@@ -1,0 +1,4 @@
+These scripts assumed that You use Ubuntu, Apache, MySQL, Drush + Drush Make (or Drush5).
+
+drush folder containing drush makefiles
+install-profile folder containig -  yes, it's suprising -  my custom install profile with default configuration
