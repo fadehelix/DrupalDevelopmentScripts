@@ -3,6 +3,9 @@ echo  -n "Podaj nazwe tworzonego sajta: "
 read sitename
 echo -n "Podaj domene np. .local (wraz z kropka): "
 read domain
+echo -n "Podaj nazwe uzytkownika vhosta"
+read owner
+
 
 #utworz katalog vhosta
 mkdir -p /var/www/$sitename$domain/public_html
@@ -12,7 +15,7 @@ mkdir -p /var/www/$sitename$domain/public_html
 
 
 #zmien ownera
-chown -R adas:www-data /var/www/$sitename$domain/public_html
+chown -R $owner:www-data /var/www/$sitename$domain/public_html
 
 #Utworz katalog z logami apacha dla vhosta
 mkdir /var/log/apache2/$sitename$domain/

@@ -9,6 +9,7 @@ projects[drupal][version] = "7.11"
 projects[ctools][version] = "1.0"
 projects[token][version] = "1.0"
 projects[views][version] = "3.3"
+projects[pathauto][version] = "1.0"
 
 ;include development modules (path ./ is required)
 ;includes[dev] = "./dev.make" 
