@@ -1,21 +1,48 @@
+#!/bin/bash
+
+#check if user is the root
+if (( EUID != 0 )); then
+   echo "You must be root to execute this script. Bye ;)" 1>&2
+   exit 100
+fi
+
+
 #Pobierz nazwe tworzonego vhosta i jednoczesnie usera
-echo  -n "Podaj nazwe tworzonego sajta: "
+echo  -n "Type in a site name: "
 read sitename
-echo -n "Podaj domene np. .local (wraz z kropka): "
+echo -n "Type in a domain e.g. .local (with dot): "
 read domain
-echo -n "Podaj nazwe uzytkownika vhosta"
-read owner
+echo -n "Type in a user of vhost: "
+read vhowner
 
+#Check if vhost exists
+if ( grep -qi $sitename$domain /etc/hosts ); then
+	echo "Such vhost exists. Please choose a different name"
+	exit 1
+fi
 
-#utworz katalog vhosta
+#input validation
+# -z mean: is empty
+if [ -z $sitename ]; then
+	echo "Sorry, but site name can't be empty. Try again."
+	exit 1
+fi
+if [ -z $domain ]; then
+  echo "Sorry, but domain name can't be empty. Try again."
+	exit 1
+fi
+
+if [ -z $vhowner ]; then
+	echo "Sorry, but You must type user name. Try again."
+	exit 1
+fi
+
+#make vhost directory
 mkdir -p /var/www/$sitename$domain/public_html
 
-#utworz katalog www
 
-
-
-#zmien ownera
-chown -R $owner:www-data /var/www/$sitename$domain/public_html
+#change owner
+chown -R $vhowner:www-data /var/www/$sitename$domain/public_html
 
 #Utworz katalog z logami apacha dla vhosta
 mkdir /var/log/apache2/$sitename$domain/
@@ -30,14 +57,14 @@ echo "<VirtualHost *:80>
   allow from all
   Options +Indexes FollowSymLinks
  </Directory>
- 
+
  #plik z logami
  ErrorLog /var/log/apache2/$sitename$domain/error.log
- 
+
  LogLevel warn
- 
+
  CustomLog /var/log/apache2/$sitename$domain/access.log combined
- 
+
 </VirtualHost>" > /etc/apache2/sites-available/$sitename$domain
 
 #utworz dowiazanie
