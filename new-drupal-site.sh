@@ -76,30 +76,32 @@ a2ensite $sitename$domain
 /etc/init.d/apache2 restart
 
 #database
-echo -n: "MySQL  user with create/drop database privilages : "
+echo -n "MySQL  user with create/drop database privilages : "
 read dbuser
 echo -n "MySQL user's password: "
 read dbuserpass
 
-mysql -u$dbuser -p$dbuserpass -e "create database $sitename;"
+mysql -u"$dbuser" -p"$dbuserpass" -e "create database $sitename;"
 
 
-#test vhosta
-#echo "<h1>Propsy! Utworzyles vhosta <span style='color:red'> ${sitename}${domain} </span> !!!</h1>" > /var/www/$sitename$domain/public_html/index.php
 
 ######## DRUPAL SECTION #########
 
 cd /var/www/$sitename$domain/public_html/
 
 #Download Drupal with other modules
-drush make https://raw.github.com/fadehelix/DrupalDevelopmentScripts/master/drush/default.make . 
+drush make https://raw.github.com/fadehelix/DrupalDevelopmentScripts/master/drush/default.make .
 
+#translations
+chmod g+r translations/*
+chmod g+r profiles/minimal/translations/*
 #files
-mkdir sites/all/default/files
+mkdir sites/default/files
+chmod g+w sites/default/files/
 
 #prepare settings
 cp sites/default/default.settings.php sites/default/settings.php
-
+chmod g+w sites/default/settings.php
 
 #change owner
 chown -R $vhowner:www-data *
