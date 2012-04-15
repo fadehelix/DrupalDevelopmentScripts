@@ -3,13 +3,20 @@ core = 7.x
 
 api = 2
 projects[drupal][version] = "7.11"
-;projects[drupal][translations][] = pl ; Polish translation but it doesn't work at the moment :(
+projects[drupal][translations][] = pl
 
 ; Modules
 projects[ctools][version] = "1.0"
+;projects[] = google_analytics
 projects[token][version] = "1.0"
 projects[views][version] = "3.3"
 projects[pathauto][version] = "1.0"
+projects[admin_menu][version] = "3.0"
 
-;include development modules (path ./ is required)
-;includes[dev] = "./dev.make" 
+
+;Wysiwyg editor
+projects[wysiwyg][version] = "2.1"
+projects[imce][version] = "1.5"
+
+;include development modules
+includes[dev] = "https://raw.github.com/fadehelix/DrupalDevelopmentScripts/master/drush/dev.make" 

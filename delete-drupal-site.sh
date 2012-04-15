@@ -19,7 +19,7 @@ read domain
 
 #Check if vhost exists
 if ( grep -q $sitename$domain /etc/hosts ); then
-
+ echo "Vhost will be remove..."
 else
 	echo "Such vhost doesn't exists. Please choose a different vhost"
 	exit 1
@@ -39,11 +39,13 @@ rm /etc/apache2/sites-available/$sitename$domain
 
 
 #delete database
-echo -n: "Database user name (with create/drop database privileges): "
+echo -n "Database user name (with create/drop database privileges): "
 read dbuser
 echo -n "Database user's password: "
 read dbuserpass
 
 mysql -u$dbuser -p$dbuserpass -e "drop database $sitename;"
+
+echo "Database removed"
 
 /etc/init.d/apache2 restart

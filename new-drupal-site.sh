@@ -42,13 +42,13 @@ mkdir -p /var/www/$sitename$domain/public_html
 
 
 #change owner
-chown -R $vhowner:www-data /var/www/$sitename$domain/public_html
+#chown -R $vhowner:www-data /var/www/$sitename$domain/public_html
 
-#Utworz katalog z logami apacha dla vhosta
+#logs
 mkdir /var/log/apache2/$sitename$domain/
 
 
-#utworzenie konfiguracji vhosta
+#vhost configuration
 echo "<VirtualHost *:80>
  DocumentRoot /var/www/$sitename$domain/public_html/
  ServerName $sitename$domain
@@ -67,24 +67,40 @@ echo "<VirtualHost *:80>
 
 </VirtualHost>" > /etc/apache2/sites-available/$sitename$domain
 
-#utworz dowiazanie
-#ln -s "/etc/apache2/sites-available/$sitename /etc/apache2/sites-enabled/
 
 echo  127.0.0.1    $sitename$domain >>/etc/hosts
 
+#enable vhost
 a2ensite $sitename$domain
 
 /etc/init.d/apache2 restart
 
 #database
-echo -n: "Uzytkownik bazy danych: "
+echo -n: "MySQL  user with create/drop database privilages : "
 read dbuser
-echo -n "Haslo uzytkownika bazy danych: "
+echo -n "MySQL user's password: "
 read dbuserpass
 
 mysql -u$dbuser -p$dbuserpass -e "create database $sitename;"
 
 
 #test vhosta
-echo "<h1>Propsy! Utworzyles vhosta <span style='color:red'> ${sitename}${domain} </span> !!!</h1>" > /var/www/$sitename$domain/public_html/index.php
+#echo "<h1>Propsy! Utworzyles vhosta <span style='color:red'> ${sitename}${domain} </span> !!!</h1>" > /var/www/$sitename$domain/public_html/index.php
 
+######## DRUPAL SECTION #########
+
+cd /var/www/$sitename$domain/public_html/
+
+#Download Drupal with other modules
+drush make https://raw.github.com/fadehelix/DrupalDevelopmentScripts/master/drush/default.make . 
+
+#files
+mkdir sites/all/default/files
+
+#prepare settings
+cp sites/default/default.settings.php sites/default/settings.php
+
+
+#change owner
+chown -R $vhowner:www-data *
+chown    $vhowner:www-data .*

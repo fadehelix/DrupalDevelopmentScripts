@@ -4,5 +4,5 @@ projects[devel][version] = "1.2"
 
 ; version is irrelevant
 projects[] = drupalforfirebug
-projects[] = coder
+;projects[] = coder
 
