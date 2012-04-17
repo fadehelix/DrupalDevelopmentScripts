@@ -103,6 +103,10 @@ chmod g+w sites/default/files/
 cp sites/default/default.settings.php sites/default/settings.php
 chmod g+w sites/default/settings.php
 
-#change owner
+#ckeditor library
+cp -r sites/all/libraries/cke/ckeditor sites/all/libraries/
+rm -rf sites/all/libraries/cke
+
+#change owner of all Drupal files
 chown -R $vhowner:www-data *
 chown    $vhowner:www-data .*

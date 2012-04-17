@@ -17,9 +17,10 @@ projects[admin_menu][version] = "3.0"
 ;Wysiwyg editor
 projects[wysiwyg][version] = "2.1"
 projects[imce][version] = "1.5"
+projects[imce_wysiwyg] = "1.0"
 libraries[ckeditor][download][type] = "file"
 libraries[ckeditor][download][url] = "http://download.cksource.com/CKEditor%20for%20Drupal/CKEditor%203.6.2-3%20for%20Drupal/ckeditor_3.6.2-3_for_drupal_7.zip"
-;libraries[ckeditor][destination] = "libraries"
+libraries[ckeditor][destination] = "libraries/cke"
 
 ;include development modules
 includes[dev] = "https://raw.github.com/fadehelix/DrupalDevelopmentScripts/master/drush/dev.make"
