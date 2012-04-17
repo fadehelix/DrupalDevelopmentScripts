@@ -104,7 +104,7 @@ cp sites/default/default.settings.php sites/default/settings.php
 chmod g+w sites/default/settings.php
 
 #ckeditor library
-cp -r sites/all/libraries/cke/ckeditor sites/all/libraries/
+cp -r sites/all/libraries/cke/ckeditor/ckeditor/ sites/all/libraries/
 rm -rf sites/all/libraries/cke
 
 #change owner of all Drupal files
