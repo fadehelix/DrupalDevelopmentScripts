@@ -2,22 +2,28 @@
 core = 7.x
 
 api = 2
-projects[drupal][version] = "7.11"
+projects[drupal][version] = "7.14"
 projects[drupal][translations][] = pl
 
 ; Modules
+projects[admin_menu][version] = "3.0"
+projects[] = advanced_help
 projects[ctools][version] = "1.0"
+projects[] = entity
 ;projects[] = google_analytics
+projects[module_filter][version] = "1.6"
+projects[pathauto][version] = "1.0"
 projects[token][version] = "1.0"
 projects[views][version] = "3.3"
-projects[pathauto][version] = "1.0"
-projects[admin_menu][version] = "3.0"
+
+
 
 
 ;Wysiwyg editor
 projects[wysiwyg][version] = "2.1"
 projects[imce][version] = "1.5"
 projects[imce_wysiwyg] = "1.0"
+;ckeditor library
 libraries[ckeditor][download][type] = "file"
 libraries[ckeditor][download][url] = "http://download.cksource.com/CKEditor%20for%20Drupal/CKEditor%203.6.2-3%20for%20Drupal/ckeditor_3.6.2-3_for_drupal_7.zip"
 libraries[ckeditor][destination] = "libraries/cke"
