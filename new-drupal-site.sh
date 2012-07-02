@@ -89,6 +89,8 @@ mysql -u"$dbuser" -p"$dbuserpass" -e "create database $sitename;"
 
 cd /var/www/$sitename$domain/public_html/
 
+echo 'Downloading projects with Drush Make...'
+
 #Download Drupal with other modules
 drush make https://raw.github.com/fadehelix/DrupalDevelopmentScripts/master/drush/default.make .
 
