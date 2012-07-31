@@ -6,18 +6,19 @@ projects[drupal][version] = "7.14"
 projects[drupal][translations][] = pl
 
 ; Modules
-projects[admin_menu][version] = "3.0"
 projects[] = advanced_help
+projects[] = context
 projects[ctools][version] = "1.0"
 projects[] = entity
 ;projects[] = google_analytics
-projects[module_filter][version] = "1.6"
 projects[pathauto][version] = "1.0"
 projects[token][version] = "1.0"
 projects[views][version] = "3.3"
 
 
-
+;Administration
+projects[] = admin_menu
+projects[] module_filter
 
 ;Wysiwyg editor
 projects[wysiwyg][version] = "2.1"
