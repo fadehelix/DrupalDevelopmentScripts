@@ -76,13 +76,18 @@ a2ensite $sitename$domain
 /etc/init.d/apache2 restart
 
 #database
-echo -n "MySQL  user with create/drop database privilages : "
-read dbuser
-echo -n "MySQL user's password: "
-read dbuserpass
+#confirmation to create database
+read -p "Are You want to create database? " -n 1 -r
+if ([[ $REPLY =~ ^[Yy]$ ]]) then
 
-mysql -u"$dbuser" -p"$dbuserpass" -e "create database $sitename;"
+	echo -n ""
+	echo -n "MySQL  user with create/drop database privilages : "
+	read dbuser
+	echo -n "MySQL user's password: "
+	read dbuserpass
 
+	mysql -u"$dbuser" -p"$dbuserpass" -e "create database $sitename;"
+fi
 
 
 ######## DRUPAL SECTION #########
