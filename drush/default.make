@@ -18,7 +18,7 @@ projects[views][version] = "3.3"
 
 ;Administration
 projects[] = admin_menu
-projects[] module_filter
+projects[] = module_filter
 
 ;Wysiwyg editor
 projects[wysiwyg][version] = "2.1"
