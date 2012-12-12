@@ -8,15 +8,15 @@ fi
 
 
 #Pobierz nazwe tworzonego vhosta i jednoczesnie usera
-echo  -n "Type in a site name: "
-read sitename
-echo -n "Type in a domain e.g. .local (with dot): "
-read domain
+echo  -n "Type in a vhost address: "
+read vh
+domain=${vh##*.}
+sitename=${vh%*.$domain}
 echo -n "Type in a user of vhost: "
 read vhowner
 
 #Check if vhost exists
-if ( grep -qi $sitename$domain /etc/hosts ); then
+if ( grep -qi $vh /etc/hosts ); then
 	echo "Such vhost exists. Please choose a different name"
 	exit 1
 fi
@@ -38,40 +38,40 @@ if [ -z $vhowner ]; then
 fi
 
 #make vhost directory
-mkdir -p /var/www/$sitename$domain/public_html
+mkdir -p /var/www/$vh/public_html
 
 
 #change owner
 #chown -R $vhowner:www-data /var/www/$sitename$domain/public_html
 
 #logs
-mkdir /var/log/apache2/$sitename$domain/
+mkdir /var/log/apache2/$vh/
 
 
 #vhost configuration
 echo "<VirtualHost *:80>
- DocumentRoot /var/www/$sitename$domain/public_html/
- ServerName $sitename$domain
- ServerAlias $sitename$domain www.$sitename$domain
- <Directory /var/www/$sitename$domain/public_html/ >
+ DocumentRoot /var/www/$vh/public_html/
+ ServerName $vh
+ ServerAlias $vh www.$vh
+ <Directory /var/www/$vh/public_html/ >
   allow from all
   Options +Indexes FollowSymLinks
  </Directory>
 
  #plik z logami
- ErrorLog /var/log/apache2/$sitename$domain/error.log
+ ErrorLog /var/log/apache2/$vh/error.log
 
  LogLevel warn
 
- CustomLog /var/log/apache2/$sitename$domain/access.log combined
+ CustomLog /var/log/apache2/$vh/access.log combined
 
-</VirtualHost>" > /etc/apache2/sites-available/$sitename$domain
+</VirtualHost>" > /etc/apache2/sites-available/$vh
 
 
-echo  127.0.0.1    $sitename$domain >>/etc/hosts
+echo  127.0.0.1    $vh >>/etc/hosts
 
 #enable vhost
-a2ensite $sitename$domain
+a2ensite $vh
 
 /etc/init.d/apache2 restart
 
@@ -92,7 +92,7 @@ fi
 
 ######## DRUPAL SECTION #########
 
-cd /var/www/$sitename$domain/public_html/
+cd /var/www/$vh/public_html/
 
 echo 'Downloading projects with Drush Make...'
 
