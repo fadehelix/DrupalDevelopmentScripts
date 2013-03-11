@@ -2,8 +2,9 @@
 core = 7.x
 
 api = 2
-projects[drupal][version] = "7.17"
-projects[drupal][translations][] = pl
+projects[] = drupal
+;I think better way to enable other langage is "drush_language" command
+;projects[drupal][translations][] = pl
 
 ; Modules
 projects[] = advanced_help

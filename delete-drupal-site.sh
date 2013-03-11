@@ -38,15 +38,19 @@ a2dissite $vh
 
 rm /etc/apache2/sites-available/$vh
 
-
 #delete database
-echo -n "Database user name (with create/drop database privileges): "
-read dbuser
-echo -n "Database user's password: "
-read dbuserpass
+read -p "Are you want to delete database $sitename ?" -n 1 -r
+if ([[ $REPLY =~ [Yy]$ ]]) then
 
-mysql -u$dbuser -p$dbuserpass -e "drop database $sitename;"
+  #delete database
+  echo -n "Database user name (with create/drop database privileges): "
+  read dbuser
+  echo -n "Database user's password: "
+  read dbuserpass
 
-echo "Database removed"
+  mysql -u$dbuser -p$dbuserpass -e "drop database $sitename;"
+
+  echo "Database removed"
+fi
 
 /etc/init.d/apache2 restart

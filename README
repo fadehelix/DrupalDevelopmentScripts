@@ -1,4 +1,4 @@
-
+##ABOUT
 new-drupal-site.sh allows developer to create a virtual host, mysql database and download Drupal core with modules which are defined in a default .make file. All of this with one command. Database creation is optional.
 
 Feel free to fork and add other modules and configuration.

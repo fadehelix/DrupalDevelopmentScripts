@@ -7,7 +7,7 @@ if (( EUID != 0 )); then
 fi
 
 
-#Pobierz nazwe tworzonego vhosta i jednoczesnie usera
+#Get vhost nad user names
 echo  -n "Type in a vhost address: "
 read vh
 domain=${vh##*.}
@@ -94,9 +94,9 @@ fi
 
 cd /var/www/$vh/public_html/
 
-echo 'Downloading projects with Drush Make...'
+echo 'Downloading Drupal...'
 
-#Download Drupal with other modules
+#Download Drupal with modules which have defined in .make files
 drush make https://raw.github.com/fadehelix/DrupalDevelopmentScripts/master/drush/default.make .
 
 #translations
