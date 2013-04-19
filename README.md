@@ -11,5 +11,8 @@ Sites installation process is  actually carried out by the browser.
 * MySQL
 * Drush5
 
+##Drush commands:
+* hook-tracker-list (htl): Display order of modules which implements a hook given in parameter. It's handy to debug your if you want to increase site's  performance (less enabled modules - less queries to database).
+
 #### Are you disapointed ?
 Feel free to fork and submit issues.
