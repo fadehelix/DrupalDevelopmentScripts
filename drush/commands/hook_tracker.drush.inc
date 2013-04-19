@@ -13,7 +13,7 @@
 function hook_tracker_drush_command() {
 	$items = array();
 
-	$items['hook-tracker-list'] = array(
+	$items['ht-list'] = array(
 		#There is no need to define callback because it is defined by key in the line above
 		//'callback' => 'drush_hook_tracker_show_modules',
 		'aliases' => array('htl'),
@@ -35,7 +35,7 @@ function hook_tracker_drush_command() {
 *
 * @param $hook_name Name of the hook we want to track
 */
-function drush_hook_tracker_show_modules ($hook_name = 'menu') {
+function drush_hook_tracker_ht_list ($hook_name = 'menu') {
 	$hkn = $hook_name;
 	//http://api.drupal.org/api/drupal/includes!module.inc/function/module_implements/7
 	$list = module_implements($hkn);
