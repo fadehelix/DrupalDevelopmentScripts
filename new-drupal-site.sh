@@ -77,7 +77,7 @@ a2ensite $vh
 
 #database
 #confirmation to create database
-read -p "Are You want to create database? " -n 1 -r
+read -p "Are You want to create database? [y / n] " -n 1 -r
 if ([[ $REPLY =~ ^[Yy]$ ]]) then
 
 	echo -n ""
@@ -94,10 +94,21 @@ fi
 
 cd /var/www/$vh/public_html/
 
-echo 'Downloading Drupal...'
 
+
+#Check if Drush is installed
+if ! type -p drush > /dev/null; then
+  echo -n 'Drush is not installed'
+  echo -n 'Installing Drush'
+  pear channel-discover pear.drush.org
+  pear install drush/drush
+fi
+
+echo 'Downloading Drupal...'
 #Download Drupal with modules which have defined in .make files
 drush make https://raw.github.com/fadehelix/DrupalDevelopmentScripts/master/drush/default.make .
+
+
 
 #translations
 chmod g+r translations/*
@@ -114,6 +125,11 @@ chmod g+w sites/default/settings.php
 cp -r sites/all/libraries/cke/ckeditor/ckeditor/ sites/all/libraries/
 rm -rf sites/all/libraries/cke
 
+#install drupal
+drush si --db-url=mysql://"$dbuser":"$dbuserpass"@localhost/"$sitename"
+
 #change owner of all Drupal files
 chown -R $vhowner:www-data *
 chown    $vhowner:www-data .*
+
+

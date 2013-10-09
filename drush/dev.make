@@ -7,3 +7,4 @@ projects[] = devel
 projects[] = devel_themer 
 ;simplehtmldom is required by devel_themer
 projects[] = simplehtmldom 
+projects[] = registry_rebuild
