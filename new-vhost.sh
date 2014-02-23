@@ -6,13 +6,14 @@ if (( EUID != 0 )); then
    exit 100
 fi
 
+user=$(whoami)
 
 #Get vhost nad user names
 echo  -n "Vhost address: "
 read vh
 domain=${vh##*.}
 sitename=${vh%*.$domain}
-echo -n "User with access permission to this vhost: "
+echo -n "User with access permission to this vhost (default: $user ): "
 read vhowner
 
 #Check if vhost exists
@@ -28,13 +29,13 @@ if [ -z $sitename ]; then
 	exit 1
 fi
 if [ -z $domain ]; then
-  echo "Sorry, but domain name can't be empty. Try again."
-	exit 1
+    echo "Sorry, but domain name can't be empty. Try again."
+    exit 1
 fi
 
 if [ -z $vhowner ]; then
   #if user prompt is empty get current sustem user name
-  $vhowner = whoami
+  $vhowner = $user
 fi
 
 #make vhost directory
@@ -91,4 +92,4 @@ fi
 
 echo -n "Success!" 
 echo -n "New vhost $vh has been created!"
-echo -n "New database $sitename has been created!"
+echo -n "New database $sitename has been created"
