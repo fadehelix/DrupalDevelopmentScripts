@@ -2,19 +2,20 @@
 core = 7.x
 
 api = 2
+;Download drupal core
 projects[] = drupal
-;I think better way to enable other langage is "drush_language" command
-;projects[drupal][translations][] = pl
 
 ; Modules
 projects[] = advanced_help
 projects[] = context
-projects[ctools][version] = "1.0"
+projects[] = ctools
 projects[] = entity
-;projects[] = google_analytics
-projects[pathauto][version] = "1.0"
-projects[token][version] = "1.0"
-projects[views][version] = "3.3"
+projects[] = pathauto
+projects[] = token
+projects[] = views
+projects[] = rules
+projects[] = boxes
+
 
 
 ;Administration
@@ -22,9 +23,7 @@ projects[] = admin_menu
 projects[] = module_filter
 
 ;Wysiwyg editor
-projects[wysiwyg][version] = "2.1"
-projects[imce][version] = "1.5"
-projects[imce_wysiwyg] = "1.0"
+projects[] =  ckeditor
 ;ckeditor library
 libraries[ckeditor][download][type] = "file"
 libraries[ckeditor][download][url] = "http://download.cksource.com/CKEditor%20for%20Drupal/CKEditor%203.6.2-3%20for%20Drupal/ckeditor_3.6.2-3_for_drupal_7.zip"
