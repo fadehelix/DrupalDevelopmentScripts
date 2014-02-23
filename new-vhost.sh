@@ -33,8 +33,8 @@ if [ -z $domain ]; then
 fi
 
 if [ -z $vhowner ]; then
-	echo "Sorry, but You must type user name. Try again."
-	exit 1
+  #if user prompt is empty get current sustem user name
+  $vhowner = whoami
 fi
 
 #make vhost directory
@@ -88,3 +88,7 @@ if ([[ $REPLY =~ ^[Yy]$ ]]) then
 
 	mysql -u"$dbuser" -p"$dbuserpass" -e "create database $sitename;"
 fi
+
+echo -n "Success!" 
+echo -n "New vhost $vh has been created!"
+echo -n "New database $sitename has been created!"
