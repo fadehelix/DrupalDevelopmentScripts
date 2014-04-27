@@ -55,8 +55,9 @@ echo "<VirtualHost *:80>
  ServerName $vh
  ServerAlias $vh www.$vh
  <Directory /var/www/$vh/public_html/ >
-  allow from all
-  Options +Indexes FollowSymLinks
+  Options Indexes FollowSymLinks
+  AllowOverride All
+  Require all granted
  </Directory>
 
  #plik z logami
@@ -66,7 +67,7 @@ echo "<VirtualHost *:80>
 
  CustomLog /var/log/apache2/$vh/access.log combined
 
-</VirtualHost>" > /etc/apache2/sites-available/$vh
+</VirtualHost>" > "/etc/apache2/sites-available/$vh.conf"
 
 
 echo  127.0.0.1    $vh >>/etc/hosts
