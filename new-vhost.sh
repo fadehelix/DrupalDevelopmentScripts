@@ -39,11 +39,11 @@ if [ -z $vhowner ]; then
 fi
 
 #make vhost directory
-mkdir -p /var/www/$vh/public_html
+mkdir -p /var/www/$vh
 
 
 #change owner
-#chown -R $vhowner:www-data /var/www/$sitename$domain/public_html
+chown -R $vhowner:www-data /var/www/$sitename.$domain
 
 #logs
 mkdir /var/log/apache2/$vh/
@@ -51,10 +51,10 @@ mkdir /var/log/apache2/$vh/
 
 #vhost configuration
 echo "<VirtualHost *:80>
- DocumentRoot /var/www/$vh/public_html/
+ DocumentRoot /var/www/$vh/
  ServerName $vh
  ServerAlias $vh www.$vh
- <Directory /var/www/$vh/public_html/ >
+ <Directory /var/www/$vh/ >
   Options Indexes FollowSymLinks
   AllowOverride All
   Require all granted
