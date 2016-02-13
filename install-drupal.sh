@@ -24,7 +24,7 @@ read dbuser
 echo  -n "Database password: "
 read dbpass
 
-projectdir="/var/www/$vh/public_html/"
+projectdir="/var/www/$vh/"
 
 cd $projectdir
 
@@ -64,5 +64,5 @@ chown -R $vhowner:www-data *
 chown    $vhowner:www-data .*
 
 #Some site customization after installation
-drush en admin_menu boxes context views -y
+drush en admin_menu context views -y
 drush dis toolbar -y

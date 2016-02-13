@@ -7,27 +7,37 @@ projects[] = drupal
 
 ; Modules
 projects[] = advanced_help
+projects[advanced_help][subdir] = contrib
 projects[] = context
+projects[context][subdir] = contrib
 projects[] = ctools
+projects[ctools][subdir] = contrib
 projects[] = entity
+projects[entity][subdir] = contrib
+projects[] = features
+projects[features][subdir] = contrib
+projects[] = jquery_update
+projects[jquery_update][subdir] = contrib
 projects[] = pathauto
+projects[pathauto][subdir] = contrib
 projects[] = token
+projects[token][subdir] = contrib
 projects[] = views
+projects[views][subdir] = contrib
 projects[] = rules
-projects[] = boxes
+projects[rules][subdir] = contrib
 
 
 
 ;Administration
 projects[] = admin_menu
+projects[admin_menu][subdir] = contrib
 projects[] = module_filter
+projects[module_filter][subdir] = contrib
 
 ;Wysiwyg editor
 projects[] =  ckeditor
-;ckeditor library
-libraries[ckeditor][download][type] = "file"
-libraries[ckeditor][download][url] = "http://download.cksource.com/CKEditor%20for%20Drupal/CKEditor%203.6.2-3%20for%20Drupal/ckeditor_3.6.2-3_for_drupal_7.zip"
-libraries[ckeditor][destination] = "libraries/cke"
+projects[ckeditor][subdir] = contrib
 
 ;include development modules
-includes[dev] = "https://raw.github.com/fadehelix/DrupalDevelopmentScripts/master/drush/dev.make"
+;includes[dev] = "https://raw.github.com/fadehelix/DrupalDevelopmentScripts/master/drush/dev.make"
