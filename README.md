@@ -24,6 +24,11 @@ User with access permission to this vhost (default: root ): jack
 ```
 Now you can choose if you want to have new database. If yes set your MySQL user and password when prompt.
 
+### What if you need to only install, let's say, modules included in theme.make file?
+It is easy. Just go to your drupal site directory and run following command:
+```bash
+drush make -y --no-core path/to/the/theme.make .
+```
 
 #### Are you disapointed ?
 Feel free to fork and submit issues.
