@@ -4,14 +4,6 @@
 # - virtualhost
 # - database
 
-
-#check if user is the root
-if (( EUID != 0 )); then
-   echo "You must be root to execute this script. Bye ;)" 1>&2
-   exit 100
-fi
-
-
 #Get required data from user
 echo  -n "Type in a vhost address: "
 read vh
@@ -38,18 +30,11 @@ fi
 
 echo 'Downloading Drupal and most useful modules...'
 #Download Drupal with modules which have defined in .make files
-drush make https://raw.github.com/fadehelix/DrupalDevelopmentScripts/master/drush/default.make .
-
-
-
-#translations
-#chmod g+r translations/*
-#chmod g+r profiles/minimal/translations/*
-
+drush -y  make https://raw.github.com/fadehelix/DrupalDevelopmentScripts/master/drush/default.make .
 
 #files
 mkdir sites/default/files
-chmod g+w sites/default/files/
+chmod -R  g+w sites/default/files/
 
 #prepare settings
 cp sites/default/default.settings.php sites/default/settings.php
@@ -60,9 +45,9 @@ chmod g+w sites/default/settings.php
 drush si standard --account-name=admin account-pass='admin@1234' --db-url=mysql://"$dbuser":"$dbpass"@localhost/"$dbname" -y
 
 #change owner of all Drupal files
-chown -R $vhowner:www-data *
-chown    $vhowner:www-data .*
+#chown -R $vhowner:www-data *
+#chown    $vhowner:www-data .*
 
 #Some site customization after installation
-drush en admin_menu context views -y
+drush en admin_menu ctools context features  views -y
 drush dis toolbar -y
