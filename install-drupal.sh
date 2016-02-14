@@ -49,5 +49,5 @@ drush si standard --account-name=admin account-pass='admin@1234' --db-url=mysql:
 #chown    $vhowner:www-data .*
 
 #Some site customization after installation
-drush en admin_menu ctools context features  views -y
+drush en admin_menu ctools context features strongarm  views -y
 drush dis toolbar -y
