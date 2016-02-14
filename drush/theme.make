@@ -1,3 +1,6 @@
+core = 7.x
+api = 2
+
 ;Boostrap base theme and related modules
 projects[bootstrap][version] = 3.4
 
