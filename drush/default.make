@@ -7,39 +7,39 @@ projects[] = drupal
 
 ; Modules
 projects[] = advanced_help
-projects[advanced_help][subdir] = contrib
+projects[advanced_help][subdir] = "contrib"
 projects[] = context
-projects[context][subdir] = contrib
+projects[context][subdir] = "contrib"
 projects[] = ctools
-projects[ctools][subdir] = contrib
+projects[ctools][subdir] = "contrib"
 projects[] = entity
-projects[entity][subdir] = contrib
+projects[entity][subdir] = "contrib"
 projects[] = features
-projects[features][subdir] = contrib
+projects[features][subdir] = "contrib"
 projects[] = jquery_update
-projects[jquery_update][subdir] = contrib
+projects[jquery_update][subdir] = "contrib"
 projects[] = pathauto
-projects[pathauto][subdir] = contrib
+projects[pathauto][subdir] = "contrib"
 projects[] = strongarm
-projects[strongarm][subdir] = contrib
+projects[strongarm][subdir] = "contrib"
 projects[] = token
-projects[token][subdir] = contrib
+projects[token][subdir] = "contrib"
 projects[] = views
-projects[views][subdir] = contrib
+projects[views][subdir] = "contrib"
 projects[] = rules
-projects[rules][subdir] = contrib
+projects[rules][subdir] = "contrib"
 
 
 
 ;Administration
 projects[] = admin_menu
-projects[admin_menu][subdir] = contrib
+projects[admin_menu][subdir] = "contrib"
 projects[] = module_filter
-projects[module_filter][subdir] = contrib
+projects[module_filter][subdir] = "contrib"
 
 ;Wysiwyg editor
 projects[] =  ckeditor
-projects[ckeditor][subdir] = contrib
+projects[ckeditor][subdir] = "contrib"
 
 ;include development modules
 ;includes[dev] = "https://raw.github.com/fadehelix/DrupalDevelopmentScripts/master/drush/dev.make"
