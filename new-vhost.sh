@@ -16,6 +16,11 @@ sitename=${vh%*.$domain}
 echo -n "User with access permission to this vhost (default: $user ): "
 read vhowner
 
+echo -n "Vhost path [/var/www/]: "
+read vp
+path=${vp}
+
+
 #Check if vhost exists
 if ( grep -qi $vh /etc/hosts ); then
 	echo "Such vhost exists. Please choose a different address"
@@ -38,12 +43,17 @@ if [ -z $vhowner ]; then
   $vhowner = $user
 fi
 
+if [ -z $vp  ]; then
+	#if path is empty set default /var/www/
+	$vp = "/var/www/"
+fi
+
 #make vhost directory
-mkdir -p /var/www/$vh
+mkdir -p $vp$vh
 
 
 #change owner
-chown -R $vhowner:www-data /var/www/$sitename.$domain
+chown -R $vhowner:www-data $vp$sitename.$domain
 
 #logs
 mkdir /var/log/apache2/$vh/
@@ -51,10 +61,10 @@ mkdir /var/log/apache2/$vh/
 
 #vhost configuration
 echo "<VirtualHost *:80>
- DocumentRoot /var/www/$vh/
+ DocumentRoot $vp$vh/
  ServerName $vh
  ServerAlias $vh www.$vh
- <Directory /var/www/$vh/ >
+ <Directory $vp$vh/ >
   Options Indexes FollowSymLinks
   AllowOverride All
   Require all granted
