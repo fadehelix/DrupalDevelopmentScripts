@@ -9,7 +9,7 @@ fi
 user=$(whoami)
 
 #Get vhost nad user names
-echo  -n "Vhost address: "
+echo -n  "Vhost address: "
 read vh
 domain=${vh##*.}
 sitename=${vh%*.$domain}
@@ -23,18 +23,18 @@ path=${vp}
 
 #Check if vhost exists
 if ( grep -qi $vh /etc/hosts ); then
-	echo "Such vhost exists. Please choose a different address"
+	echo "$(tput setaf 1)Such vhost exists.$(tput sgr 0) Please choose a different address"
 	exit 1
 fi
 
 #input validation
 # -z mean: is empty
 if [ -z $sitename ]; then
-	echo "Sorry, but site name can't be empty. Try again."
+	echo "$(tput setaf 1)Sorry, but site name can't be empty.$(tput sgr 0) Try again."
 	exit 1
 fi
 if [ -z $domain ]; then
-    echo "Sorry, but domain name can't be empty. Try again."
+	echo "$(tput setaf 1)Sorry, but domain name can't be empty.$(tput sgr 0) Try again."
     exit 1
 fi
 
@@ -92,15 +92,15 @@ a2ensite $vh
 read -p "Do you want to create database? [y / n] " -n 1 -r
 if ([[ $REPLY =~ ^[Yy]$ ]]) then
 
-	echo -n " "
+	echo -e "\n"
 	echo -n "MySQL  user with create/drop database privilages : "
 	read dbuser
-	echo -n "MySQL user's password: "
+	echo -n "\n MySQL user's password: "
 	read dbuserpass
 
 	mysql -u"$dbuser" -p"$dbuserpass" -e "create database $sitename;"
 fi
 
-echo -n "Success!" 
-echo -n "New vhost $vh has been created!"
-echo -n "New database $sitename has been created"
+echo -e "\n\n $(tput setaf 6)Success!$(tput sgr 0) \n " 
+echo -e "$(tput setaf 2)New vhost $vh has been created!$(tput sgr 0) \n"
+echo -e "$(tput setaf 2)New database $sitename has been created!$(tput sgr 0)"
