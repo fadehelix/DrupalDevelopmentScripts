@@ -34,7 +34,7 @@ function drush_dbupdate_revert($module, $update_id) {
     return drush_set_error('No update id given! Please try again and set the update ID');
   }
 
-  $args = array('drupal_set_installed_schema_version('" . $module . "', ' . $update_id . ');');
+  $args = array('drupal_set_installed_schema_version(' . $module . ', ' . $update_id . ')');
   $options = array();
   drush_invoke_process('@self', 'php-eval', $args, $options);
   
