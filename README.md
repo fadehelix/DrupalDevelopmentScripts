@@ -10,6 +10,11 @@ Sites installation process is  actually carried out by the browser.
 * MySQL/MariaDB
 * Drush
 
+## Sync database and public files between drupal instances
+1. Configure site aliases by edit `drush/sites/default.site.yml`
+2. Run `./sync.sh`
+
+
 ### How to create new vhost?
 ```bash
 sudo ./new-vhost
