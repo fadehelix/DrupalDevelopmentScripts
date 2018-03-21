@@ -1,0 +1,19 @@
+local:
+  uri: http://drupal.docker.localhost:8000
+  root: /var/www/html/
+  paths:
+    - dump-dir: drush.dbdumps
+    - files: sites/default/files
+
+dev:
+  uri: http://my.site.com
+  root: /home/iamthedev/web
+  host: my.site.com
+  user: iamthedev
+  ssh:
+    options: '-o PasswordAuthentication=no'
+  paths:
+    - dump-dir: /home/iamthedev/drush.dbdumps
+    - files: sites/default
+    - drush-script: '/home/iamthedev/bin/drush'
+
